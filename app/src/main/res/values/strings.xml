@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Minhajul Atsar</string>
+    <string name="action_settings">Settings</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+    <string name="no_stream">Radio station couldn\'t stream!</string>
+    <string name="live_broadcast">Judul</string>
+    <string name="textview">TextView</string>
+</resources>
