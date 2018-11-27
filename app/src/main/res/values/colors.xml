@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#488aff</color>
+    <color name="ripple_color">#3e4a61</color>
     <!--<color name="colorPrimary">#3F51B5</color>-->
     <color name="colorPrimaryDark">#171b1e</color>
     <color name="colorAccent">#FF4081</color>
     <color name="white">#FFFFFF</color>
     <color name="grey">#ecf0f1</color>
+    <color name="transparent">#80FFFFFF</color>
+    <color name="color_default">#ff4444</color>
+    <color name="color_pressed">#cc0000</color>
+    <color name="color_focused">#ff8800</color>
+
 
 </resources>

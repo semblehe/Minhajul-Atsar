@@ -11,9 +11,9 @@
         android:layout_height="wrap_content"
         android:layout_margin="4dp"
         card_view:cardCornerRadius="6dp"
-        android:foreground="?android:attr/selectableItemBackground"
+    android:foreground="?android:attr/selectableItemBackground"
         >
-
+        <!--android:foreground="@drawable/selectable_item_background"-->
         <LinearLayout
             android:layout_margin="10dp"
             android:layout_width="match_parent"
@@ -28,6 +28,8 @@
                 android:text="TextView"
                 android:textColor="@color/colorPrimary"
                 android:textStyle="bold"
+                android:padding="5dp"
+                android:radius="8dp"
                 />
 
 
@@ -75,17 +77,16 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
             <TextView
-                android:layout_marginTop="2dp"
                 android:layout_width="0dp"
                 android:layout_weight=".20"
                 android:layout_height="wrap_content"
-                android:textSize="12dp"
-                android:text="TextView"
-                android:textAlignment="center"
+                android:textSize="14dp"
+                android:text="30"
+                android:drawableLeft="@drawable/ic_headset_black_24dp"
+                android:drawablePadding="0dp"
                 />
 
             <TextView
-                android:layout_marginTop="2dp"
                 android:id="@+id/textView3"
                 android:layout_width="0dp"
                 android:layout_weight=".60"
@@ -94,14 +95,14 @@
                 />
 
             <TextView
-                android:layout_marginTop="2dp"
                 android:layout_width="0dp"
                 android:layout_weight=".20"
                 android:layout_height="wrap_content"
-                android:textSize="12dp"
+                android:textSize="10dp"
                 android:text="TextView"
                 android:id="@+id/siaran"
                 android:textAlignment="center"
+                android:textStyle="bold"
                 />
 
         </LinearLayout>

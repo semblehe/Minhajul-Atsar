@@ -71,6 +71,8 @@ public class ShoutcastListAdapter extends BaseAdapter {
 
         }
 
+        String sts = shoutcast.getSiaran();
+
         holder.judul.setText(shoutcast.getJudul());
         holder.pembicara.setText(shoutcast.getPembicara());
         holder.siaran.setText(shoutcast.getSiaran());
@@ -79,9 +81,9 @@ public class ShoutcastListAdapter extends BaseAdapter {
                 .load("http://alilmu.net/images/"+shoutcast.getGambar())
                 .into(holder.gambar);
 
-        if(shoutcast.getSiaran()=="LIVE"){
+        if(sts.equalsIgnoreCase("LIVE")){
             holder.siaran.setBackgroundResource(R.drawable.badge_live);
-        }else if (shoutcast.getSiaran()=="OFF") {
+        }else if (sts.equalsIgnoreCase("OFF")) {
             holder.siaran.setBackgroundResource(R.drawable.badge_off);
         }else{
             holder.siaran.setBackgroundResource(R.drawable.badge_onair);

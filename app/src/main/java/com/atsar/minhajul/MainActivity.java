@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,6 +22,7 @@ import com.atsar.minhajul.player.RadioManager;
 import com.atsar.minhajul.service.MyService;
 import com.atsar.minhajul.util.Server;
 import com.atsar.minhajul.util.ShoutcastListAdapter;
+import com.squareup.picasso.Picasso;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -58,6 +60,9 @@ public class MainActivity extends AppCompatActivity {
 
     @BindView(R.id.name)
     TextView textView;
+
+    @BindView(R.id.gbr)
+    ImageView gbr;
 
     @BindView(R.id.sub_player)
     View subPlayer;
@@ -243,6 +248,10 @@ public class MainActivity extends AppCompatActivity {
         streamURL = shoutcast.getUrl();
         judul = shoutcast.getJudul();
         pembicara = shoutcast.getPembicara();
+
+        Picasso.with(MainActivity.this)
+                .load("http://alilmu.net/images/"+shoutcast.getGambar())
+                .into(gbr);
 
         radioManager.playOrPause(streamURL,judul,pembicara);
 //        textView.setText(getString(R.string.live_broadcast));
