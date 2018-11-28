@@ -1,10 +1,15 @@
 package com.atsar.minhajul;
 
 import android.app.ProgressDialog;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -15,13 +20,16 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.atsar.minhajul.app.Config;
 import com.atsar.minhajul.model.ListRadio;
 import com.atsar.minhajul.model.ModelRadio;
 import com.atsar.minhajul.player.PlaybackStatus;
 import com.atsar.minhajul.player.RadioManager;
 import com.atsar.minhajul.service.MyService;
 import com.atsar.minhajul.util.Server;
+import com.atsar.minhajul.util.SharedPrefManager;
 import com.atsar.minhajul.util.ShoutcastListAdapter;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.squareup.picasso.Picasso;
 
 import org.greenrobot.eventbus.EventBus;
@@ -67,11 +75,21 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.sub_player)
     View subPlayer;
 
+    @BindView(R.id.txt_reg_id)
+    TextView txtRegId;
+
+    @BindView(R.id.txt_push_message)
+    TextView txtMessage;
+
     RadioManager radioManager;
 
     String streamURL,judul,pembicara;
 
     private ProgressDialog progressDialog;
+
+    private BroadcastReceiver mRegistrationBroadcastReceiver;
+
+    private static final String TAG = MainActivity.class.getSimpleName();
 
 //    private DrawerLayout mDrawerLayout;
 //    private ActionBarDrawerToggle mToggle;
@@ -90,6 +108,8 @@ public class MainActivity extends AppCompatActivity {
 
         progressDialog = new ProgressDialog(this);
 
+
+        Toast.makeText(this,SharedPrefManager.getInstance(this).getToken(), Toast.LENGTH_SHORT).show();
         getRadio();
 //        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer);
 //        mToggle = new ActionBarDrawerToggle(this,mDrawerLayout,R.string.open,R.string.close);
@@ -119,7 +139,46 @@ public class MainActivity extends AppCompatActivity {
 //        if (behavior != null) {
 //            behavior.onNestedFling(coordinatorLayout, appBarLayout, null, 0, 10000, true);
 //        }
+
+        mRegistrationBroadcastReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+
+                // checking for type intent filter
+                if (intent.getAction().equals(Config.REGISTRATION_COMPLETE)) {
+                    // gcm successfully registered
+                    // now subscribe to `global` topic to receive app wide notifications
+                    FirebaseMessaging.getInstance().subscribeToTopic(Config.TOPIC_GLOBAL);
+
+                    displayFirebaseRegId();
+
+                } else if (intent.getAction().equals(Config.PUSH_NOTIFICATION)) {
+                    // new push notification is received
+
+                    String message = intent.getStringExtra("message");
+
+                    Toast.makeText(getApplicationContext(), "Push notification: " + message, Toast.LENGTH_LONG).show();
+
+                    txtMessage.setText(message);
+                }
+            }
+        };
+
+        displayFirebaseRegId();
     }
+
+    private void displayFirebaseRegId() {
+        SharedPreferences pref = getApplicationContext().getSharedPreferences(Config.SHARED_PREF, 0);
+        String regId = pref.getString("regId", null);
+
+        Log.e(TAG, "Firebase reg id: " + regId);
+
+        if (!TextUtils.isEmpty(regId))
+            txtRegId.setText("Firebase Reg Id: " + regId);
+        else
+            txtRegId.setText("Firebase Reg Id is not received yet!");
+    }
+
 
     private void getRadio() {
         progressDialog.setMessage("Memuat Data ...");
