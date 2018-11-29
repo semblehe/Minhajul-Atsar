@@ -1,0 +1,73 @@
+{
+  "project_info": {
+    "project_number": "129876974051",
+    "firebase_url": "https://minhajulatsar-c8c47.firebaseio.com",
+    "project_id": "minhajulatsar-c8c47",
+    "storage_bucket": "minhajulatsar-c8c47.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:129876974051:android:15886e92155b9128",
+        "android_client_info": {
+          "package_name": "com.atsar.minhajul"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "129876974051-kr55953mm6ks3dp3lkn1ddbitd478far.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA9tDNbzu6Gv4TCNv0X4b61WKc7qX-6vGs"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:129876974051:android:3095652c6a058719",
+        "android_client_info": {
+          "package_name": "com.coba.android"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "129876974051-kr55953mm6ks3dp3lkn1ddbitd478far.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA9tDNbzu6Gv4TCNv0X4b61WKc7qX-6vGs"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

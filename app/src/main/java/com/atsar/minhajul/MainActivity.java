@@ -27,7 +27,6 @@ import com.atsar.minhajul.player.PlaybackStatus;
 import com.atsar.minhajul.player.RadioManager;
 import com.atsar.minhajul.service.MyService;
 import com.atsar.minhajul.util.Server;
-import com.atsar.minhajul.util.SharedPrefManager;
 import com.atsar.minhajul.util.ShoutcastListAdapter;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.squareup.picasso.Picasso;
@@ -75,11 +74,11 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.sub_player)
     View subPlayer;
 
-    @BindView(R.id.txt_reg_id)
-    TextView txtRegId;
-
-    @BindView(R.id.txt_push_message)
-    TextView txtMessage;
+//    @BindView(R.id.txt_reg_id)
+//    TextView txtRegId;
+//
+//    @BindView(R.id.txt_push_message)
+//    TextView txtMessage;
 
     RadioManager radioManager;
 
@@ -109,7 +108,6 @@ public class MainActivity extends AppCompatActivity {
         progressDialog = new ProgressDialog(this);
 
 
-        Toast.makeText(this,SharedPrefManager.getInstance(this).getToken(), Toast.LENGTH_SHORT).show();
         getRadio();
 //        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer);
 //        mToggle = new ActionBarDrawerToggle(this,mDrawerLayout,R.string.open,R.string.close);
@@ -159,7 +157,7 @@ public class MainActivity extends AppCompatActivity {
 
                     Toast.makeText(getApplicationContext(), "Push notification: " + message, Toast.LENGTH_LONG).show();
 
-                    txtMessage.setText(message);
+//                    txtMessage.setText(message);
                 }
             }
         };
@@ -173,10 +171,10 @@ public class MainActivity extends AppCompatActivity {
 
         Log.e(TAG, "Firebase reg id: " + regId);
 
-        if (!TextUtils.isEmpty(regId))
-            txtRegId.setText("Firebase Reg Id: " + regId);
-        else
-            txtRegId.setText("Firebase Reg Id is not received yet!");
+//        if (!TextUtils.isEmpty(regId))
+//            txtRegId.setText("Firebase Reg Id: " + regId);
+//        else
+//            txtRegId.setText("Firebase Reg Id is not received yet!");
     }
 
 
@@ -274,7 +272,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         trigger.setImageResource(status.equals(PlaybackStatus.PLAYING)
-                ? R.drawable.ic_pause_black
+                ? R.drawable.ic_pause_white
                 : R.drawable.ic_play_arrow_black);
 
     }
@@ -293,26 +291,26 @@ public class MainActivity extends AppCompatActivity {
         System.out.println("test "+streamURL);
         ModelRadio shoutcast = (ModelRadio) parent.getItemAtPosition(position);
         if(shoutcast == null){
-
             return;
-
         }
 
-        System.out.println(view);
+        if(!shoutcast.getPembicara().equals("")) {
+            textView.setText(shoutcast.getPembicara());
 
-        textView.setText(shoutcast.getPembicara());
+            subPlayer.setVisibility(View.VISIBLE);
 
-        subPlayer.setVisibility(View.VISIBLE);
+            streamURL = shoutcast.getUrl();
+            judul = shoutcast.getJudul();
+            pembicara = shoutcast.getPembicara();
 
-        streamURL = shoutcast.getUrl();
-        judul = shoutcast.getJudul();
-        pembicara = shoutcast.getPembicara();
+            Picasso.with(MainActivity.this)
+                    .load("http://alilmu.net/images/" + shoutcast.getGambar())
+                    .into(gbr);
 
-        Picasso.with(MainActivity.this)
-                .load("http://alilmu.net/images/"+shoutcast.getGambar())
-                .into(gbr);
-
-        radioManager.playOrPause(streamURL,judul,pembicara);
+            radioManager.playOrPause(streamURL, judul, pembicara);
+        }else{
+            Toast.makeText(MainActivity.this,"Afwan, Saluran Radio sedang OFF", Toast.LENGTH_SHORT).show();
+        }
 //        textView.setText(getString(R.string.live_broadcast));
     }
 

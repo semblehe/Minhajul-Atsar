@@ -1,6 +1,7 @@
 package com.atsar.minhajul.app;
 
 public class Config {
+
     // global topic to receive app wide push notifications
     public static final String TOPIC_GLOBAL = "global";
 
