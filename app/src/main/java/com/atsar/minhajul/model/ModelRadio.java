@@ -18,6 +18,9 @@ public class ModelRadio {
     @SerializedName("siaran")
     private String siaran;
 
+    @SerializedName("pendengar")
+    private String pendengar;
+
     public String getJudul() {
         return judul;
     }
@@ -56,5 +59,13 @@ public class ModelRadio {
 
     public void setSiaran (String siaran) {
         this.siaran = siaran;
+    }
+
+    public String getPendengar() {
+        return pendengar;
+    }
+
+    public void setPendengar (String siaran) {
+        this.pendengar = pendengar;
     }
 }

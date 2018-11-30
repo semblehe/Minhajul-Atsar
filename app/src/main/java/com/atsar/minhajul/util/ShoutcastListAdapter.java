@@ -76,6 +76,7 @@ public class ShoutcastListAdapter extends BaseAdapter {
         holder.judul.setText(shoutcast.getJudul());
         holder.pembicara.setText(shoutcast.getPembicara());
         holder.siaran.setText(shoutcast.getSiaran());
+        holder.pendengar.setText(shoutcast.getPendengar());
 
         Picasso.with(activity)
                 .load("http://alilmu.net/images/"+shoutcast.getGambar())
@@ -105,6 +106,9 @@ public class ShoutcastListAdapter extends BaseAdapter {
 //
         @BindView(R.id.gambar)
         ImageView gambar;
+
+        @BindView(R.id.pendengar)
+        TextView pendengar;
 
         public ViewHolder(View view) {
 
