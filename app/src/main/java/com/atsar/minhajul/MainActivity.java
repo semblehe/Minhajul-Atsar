@@ -272,8 +272,8 @@ public class MainActivity extends AppCompatActivity {
         }
 
         trigger.setImageResource(status.equals(PlaybackStatus.PLAYING)
-                ? R.drawable.ic_pause_white
-                : R.drawable.ic_play_arrow_black);
+                ? R.drawable.ic_stop_white
+                : R.drawable.ic_stop_white);
 
     }
 
@@ -282,7 +282,7 @@ public class MainActivity extends AppCompatActivity {
         System.out.println("test "+"click");
         System.out.println(streamURL);
         if(TextUtils.isEmpty(streamURL)) return;
-
+        subPlayer.setVisibility(View.GONE);
         radioManager.playOrPause(streamURL,judul,pembicara);
     }
 
@@ -328,7 +328,11 @@ public class MainActivity extends AppCompatActivity {
             case R.id.action_refresh:
                 getRadio();
                 break;
+            case R.id.action_notif:
+                startActivity(new Intent(this, NotifikasiActivity.class));
+                break;
         }
+
 
         return super.onOptionsItemSelected(item);
     }
