@@ -22,6 +22,7 @@ import android.widget.Toast;
 
 import com.atsar.minhajul.app.Config;
 import com.atsar.minhajul.model.ListRadio;
+import com.atsar.minhajul.model.ModelFcm;
 import com.atsar.minhajul.model.ModelRadio;
 import com.atsar.minhajul.player.PlaybackStatus;
 import com.atsar.minhajul.player.RadioManager;
@@ -171,7 +172,9 @@ public class MainActivity extends AppCompatActivity {
 
         Log.e(TAG, "Firebase reg id: " + regId);
 
-//        if (!TextUtils.isEmpty(regId))
+        if (!TextUtils.isEmpty(regId)) {
+            getPostFCM(regId);
+        }
 //            txtRegId.setText("Firebase Reg Id: " + regId);
 //        else
 //            txtRegId.setText("Firebase Reg Id is not received yet!");
@@ -335,5 +338,33 @@ public class MainActivity extends AppCompatActivity {
 
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void getPostFCM(String idFcm) {
+        MyService service = Server.getClient().create(MyService.class);
+        service.getPostFcm(idFcm);
+        Call<ModelFcm> call = service.getPostFcm(idFcm);
+        call.enqueue(new Callback<ModelFcm>() {
+            @Override
+            public void onResponse(Call<ModelFcm> call, Response<ModelFcm> response) {
+                ModelFcm fcmModel = response.body();
+//                Boolean sukses = eventModel.getSuccess(); // never used
+                boolean success = fcmModel.getSuccess();
+
+                if (success == true) {
+//                    Toast.makeText(MainActivity.this, "Kirim FCM Token Sukses", Toast.LENGTH_SHORT).show();
+                } else {
+//                    Toast.makeText(MainActivity.this, "Kirim FCM Token gagal", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ModelFcm> call, Throwable t) {
+                Toast.makeText(MainActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                if (progressDialog != null && progressDialog.isShowing()){
+                    progressDialog.dismiss();
+                }
+            }
+        });
     }
 }

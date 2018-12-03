@@ -25,7 +25,7 @@ public class ModelRadio {
         return judul;
     }
 
-    public void getJudul(String judul) {
+    public void setJudul(String judul) {
         this.judul = judul;
     }
 
