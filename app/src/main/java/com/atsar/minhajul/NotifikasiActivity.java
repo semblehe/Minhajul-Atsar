@@ -112,7 +112,9 @@ public class NotifikasiActivity  extends AppCompatActivity {
         @Override
         public void onBindViewHolder(ViewHolder holder, int position) {
             ModelNotif modelNotif = notifikasiModelList.get(position);
-            holder.isi_tv.setText(modelNotif.getNotif());
+            holder.judul_tv.setText(modelNotif.getJudul());
+            holder.isi_tv.setText(modelNotif.getIsi());
+            holder.tgl_tv.setText(modelNotif.getTgl());
         }
 
         @Override
@@ -120,14 +122,21 @@ public class NotifikasiActivity  extends AppCompatActivity {
             return notifikasiModelList.size();
         }
 
-        public class ViewHolder extends RecyclerView.ViewHolder{
+        public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-            TextView isi_tv;
+            TextView isi_tv,judul_tv,tgl_tv;
 
             public ViewHolder(View itemView) {
                 super(itemView);
+                judul_tv = (TextView) itemView.findViewById(R.id.tv_judul);
                 isi_tv = (TextView) itemView.findViewById(R.id.tv_isi);
+                tgl_tv = (TextView) itemView.findViewById(R.id.tv_tgl);
+                itemView.setOnClickListener(this);
             }
+
+            public void onClick(View view) {
+            }
+
 
         }
     }

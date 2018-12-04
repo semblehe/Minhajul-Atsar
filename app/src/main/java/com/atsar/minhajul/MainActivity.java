@@ -83,9 +83,11 @@ public class MainActivity extends AppCompatActivity {
 
     RadioManager radioManager;
 
-    String streamURL,judul,pembicara;
+    String streamURL,judul,pembicara,versi;
 
     private ProgressDialog progressDialog;
+
+    String os = android.os.Build.VERSION.RELEASE;
 
     private BroadcastReceiver mRegistrationBroadcastReceiver;
 
@@ -98,7 +100,13 @@ public class MainActivity extends AppCompatActivity {
         System.out.println("test "+"create");
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_main);
+
+        if(Integer.parseInt(os.substring(0,1))<=5){
+            setContentView(R.layout.activity_os);
+        }else{
+            setContentView(R.layout.activity_main);
+        }
+
 
         ButterKnife.bind(this);
 
@@ -165,6 +173,8 @@ public class MainActivity extends AppCompatActivity {
 
         displayFirebaseRegId();
     }
+
+
 
     private void displayFirebaseRegId() {
         SharedPreferences pref = getApplicationContext().getSharedPreferences(Config.SHARED_PREF, 0);

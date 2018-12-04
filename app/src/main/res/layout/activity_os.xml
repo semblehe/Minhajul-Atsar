@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark" />
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+            <ListView
+                android:id="@+id/listview"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:divider="#FFF"
+                android:fadeScrollbars="false"
+                android:scrollX="0px"
+                android:scrollY="0px"
+                android:scrollbarAlwaysDrawVerticalTrack="true"
+                android:scrollbarSize="20dp"
+                android:scrollbarStyle="outsideOverlay"
+                android:scrollbars="vertical"
+                android:nestedScrollingEnabled="true"
+                />
+
+            <LinearLayout
+                android:id="@+id/sub_player"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:visibility="gone"
+                android:alpha="0.9"
+                android:padding="5dp"
+                android:background="@color/colorPrimaryDark"
+                android:clickable="true"
+                android:focusable="true"
+                >
+                <ImageView
+                    android:id="@+id/gbr"
+                    android:layout_width="130dp"
+                    android:layout_height="67dp"
+                    android:layout_weight="1"
+                    android:src="@color/colorPrimaryDark"
+                    />
+
+                <TextView
+                    android:id="@+id/name"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="left"
+                    android:layout_gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="@color/white"
+                    android:text="TextView" />
+                <ImageButton
+                    android:id="@+id/playTrigger"
+                    android:layout_width="110dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:layout_marginTop="13dp"
+                    android:background="@null"
+                    android:src="@drawable/ic_stop_white"
+                    />
+
+
+    </LinearLayout>
+
+</LinearLayout>
+</LinearLayout>
+

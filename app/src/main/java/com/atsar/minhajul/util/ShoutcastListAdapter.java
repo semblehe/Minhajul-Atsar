@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -84,10 +86,17 @@ public class ShoutcastListAdapter extends BaseAdapter {
 
         if(sts.equalsIgnoreCase("LIVE")){
             holder.siaran.setBackgroundResource(R.drawable.badge_live);
+            Animation anim = new AlphaAnimation(0.5f, 1.0f);
+            anim.setDuration(400); //You can manage the time of the blink with this parameter
+            anim.setStartOffset(400);
+            anim.setRepeatMode(Animation.REVERSE);
+            anim.setRepeatCount(Animation.INFINITE);
+            holder.siaran.startAnimation(anim);
         }else if (sts.equalsIgnoreCase("OFF")) {
             holder.siaran.setBackgroundResource(R.drawable.badge_off);
         }else{
             holder.siaran.setBackgroundResource(R.drawable.badge_onair);
+
         }
 
         return view;
@@ -116,4 +125,5 @@ public class ShoutcastListAdapter extends BaseAdapter {
 
         }
     }
+
 }

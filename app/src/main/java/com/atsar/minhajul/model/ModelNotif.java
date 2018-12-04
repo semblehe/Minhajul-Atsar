@@ -4,14 +4,36 @@ import com.google.gson.annotations.SerializedName;
 
 public class ModelNotif {
 
-    @SerializedName("notif")
-    private String notif;
+    @SerializedName("judul")
+    private String judul;
 
-    public String getNotif() {
-        return notif;
+    @SerializedName("isi")
+    private String isi;
+
+    @SerializedName("tgl")
+    private String tgl;
+
+    public String getJudul() {
+        return judul;
     }
 
-    public void setNotif(String notif) {
-        this.notif = notif;
+    public void setJudul(String judul) {
+        this.judul = judul;
+    }
+
+    public String getIsi() {
+        return isi;
+    }
+
+    public void setIsi(String isi) {
+        this.isi = isi;
+    }
+
+    public String getTgl() {
+        return tgl;
+    }
+
+    public void setTgl(String tgl) {
+        this.tgl = tgl;
     }
 }
