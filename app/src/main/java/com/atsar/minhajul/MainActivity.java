@@ -5,7 +5,11 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Bundle;
+import android.support.design.widget.NavigationView;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
@@ -53,11 +57,11 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.playTrigger)
     ImageButton trigger;
 
-//    @BindView(R.id.nestedview)
-//    NestedScrollView nestedView;
+//    @BindView(R.id.drawer_layout)
+//    DrawerLayout drawerLayout;
 //
-//    @BindView(R.id.coordinator)
-//    CoordinatorLayout coordinatorLayout;
+//    @BindView(R.id.naView)
+//    NavigationView navigationView;
 //
 //    @BindView(R.id.appbar)
 //    AppBarLayout appBarLayout;
@@ -93,8 +97,9 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = MainActivity.class.getSimpleName();
 
-//    private DrawerLayout mDrawerLayout;
-//    private ActionBarDrawerToggle mToggle;
+    private DrawerLayout mDrawer;
+    private NavigationView nvDrawer;
+    private ActionBarDrawerToggle drawerToggle;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         System.out.println("test "+"create");
@@ -104,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
         if(Integer.parseInt(os.substring(0,1))<=5){
             setContentView(R.layout.activity_os);
         }else{
-            setContentView(R.layout.activity_main);
+            setContentView(R.layout.activity_os);
         }
 
 
@@ -118,6 +123,13 @@ public class MainActivity extends AppCompatActivity {
 
 
         getRadio();
+
+        mDrawer=(DrawerLayout) findViewById(R.id.drawer_layout);
+        nvDrawer=(NavigationView) findViewById(R.id.naView);
+        setupDrawer(nvDrawer);
+        drawerToggle= setupDrawerToggle();
+        mDrawer.addDrawerListener(drawerToggle);
+        nvDrawer.getMenu().getItem(0).setChecked(true);
 //        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer);
 //        mToggle = new ActionBarDrawerToggle(this,mDrawerLayout,R.string.open,R.string.close);
 //        NavigationView nvDrawer = (NavigationView) findViewById(R.id.nv);
@@ -125,27 +137,6 @@ public class MainActivity extends AppCompatActivity {
 //        mToggle.syncState();
 //        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 //        setupDrawerContent(nvDrawer);
-
-//        MyService apiService = Server.getClient().create(MyService.class);
-//        Call<ListRadio> call = apiService.getRadio();
-//        ListRadio listradio = response.body();
-//        List<ModelRadio> list = new ArrayList<>();
-////
-//        ShoutcastListAdapter shoutcast= new ShoutcastListAdapter(this,list);
-//        listView.setAdapter(shoutcast);
-//        listView.setAdapter(shoutcast);
-
-
-//            nestedView.scrollTo(0, 0);
-//
-//            nestedView.fullScroll(View.FOCUS_DOWN);
-//            nestedView.fullScroll(View.FOCUS_UP);
-//
-//        CoordinatorLayout.LayoutParams params = (CoordinatorLayout.LayoutParams) appBarLayout.getLayoutParams();
-//        AppBarLayout.Behavior behavior = (AppBarLayout.Behavior) params.getBehavior();
-//        if (behavior != null) {
-//            behavior.onNestedFling(coordinatorLayout, appBarLayout, null, 0, 10000, true);
-//        }
 
         mRegistrationBroadcastReceiver = new BroadcastReceiver() {
             @Override
@@ -171,6 +162,7 @@ public class MainActivity extends AppCompatActivity {
             }
         };
 
+
         displayFirebaseRegId();
     }
 
@@ -188,6 +180,48 @@ public class MainActivity extends AppCompatActivity {
 //            txtRegId.setText("Firebase Reg Id: " + regId);
 //        else
 //            txtRegId.setText("Firebase Reg Id is not received yet!");
+    }
+
+    private void setupDrawer(NavigationView nview){
+        nview.setNavigationItemSelectedListener(
+                new NavigationView.OnNavigationItemSelectedListener(){
+                    public boolean onNavigationItemSelected(MenuItem menu){
+                        Terpilih(menu);
+                        return true;
+                    }
+                });
+    }
+    private ActionBarDrawerToggle setupDrawerToggle(){
+        return new ActionBarDrawerToggle(this, mDrawer, toolbar,
+                R.string.open, R.string.close);
+    }
+
+    private void Terpilih(MenuItem menu) {
+        switch(menu.getItemId()){
+            case R.id.db:
+                Toast.makeText(getApplicationContext(), "Dashboard: " , Toast.LENGTH_LONG).show();
+                break;
+            case R.id.info:
+                Toast.makeText(getApplicationContext(), "Info: " , Toast.LENGTH_LONG).show();
+                break;
+
+        }
+//        try{
+//            frag=(Fragment) fragclass.newInstance();
+//        }catch(Exception e){}
+        menu.setChecked(true);
+        setTitle(menu.getTitle());
+        mDrawer.closeDrawers();
+    }
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        drawerToggle.syncState();
+    }
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        drawerToggle.onConfigurationChanged(newConfig);
     }
 
 

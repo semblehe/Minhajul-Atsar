@@ -10,6 +10,9 @@ public class ModelNotif {
     @SerializedName("isi")
     private String isi;
 
+    @SerializedName("jam")
+    private String jam;
+
     @SerializedName("tgl")
     private String tgl;
 
@@ -35,5 +38,13 @@ public class ModelNotif {
 
     public void setTgl(String tgl) {
         this.tgl = tgl;
+    }
+
+    public String getJam() {
+        return jam;
+    }
+
+    public void setJam(String jam) {
+        this.jam = jam;
     }
 }

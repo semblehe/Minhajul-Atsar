@@ -115,6 +115,7 @@ public class NotifikasiActivity  extends AppCompatActivity {
             holder.judul_tv.setText(modelNotif.getJudul());
             holder.isi_tv.setText(modelNotif.getIsi());
             holder.tgl_tv.setText(modelNotif.getTgl());
+            holder.jam_tv.setText(modelNotif.getJam());
         }
 
         @Override
@@ -124,13 +125,14 @@ public class NotifikasiActivity  extends AppCompatActivity {
 
         public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-            TextView isi_tv,judul_tv,tgl_tv;
+            TextView isi_tv,judul_tv,tgl_tv,jam_tv;
 
             public ViewHolder(View itemView) {
                 super(itemView);
                 judul_tv = (TextView) itemView.findViewById(R.id.tv_judul);
                 isi_tv = (TextView) itemView.findViewById(R.id.tv_isi);
                 tgl_tv = (TextView) itemView.findViewById(R.id.tv_tgl);
+                jam_tv = (TextView) itemView.findViewById(R.id.tv_jam);
                 itemView.setOnClickListener(this);
             }
 
