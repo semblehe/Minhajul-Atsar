@@ -1,4 +1,4 @@
-package com.atsar.minhajul;
+package com.atsar.minhajul.activity;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.atsar.minhajul.R;
 import com.atsar.minhajul.model.ListNotif;
 import com.atsar.minhajul.model.ModelNotif;
 import com.atsar.minhajul.service.MyService;

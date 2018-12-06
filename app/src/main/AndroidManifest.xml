@@ -43,8 +43,14 @@
         </activity>
 
         <activity
-            android:name="com.atsar.minhajul.NotifikasiActivity"
+            android:name="com.atsar.minhajul.activity.NotifikasiActivity"
             android:label="Notifikasi"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name="com.atsar.minhajul.activity.JadwalActivity"
+            android:label="Jadwal"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
 

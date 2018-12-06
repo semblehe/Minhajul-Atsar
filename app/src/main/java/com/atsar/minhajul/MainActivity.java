@@ -5,7 +5,6 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
@@ -24,6 +23,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.atsar.minhajul.activity.JadwalActivity;
+import com.atsar.minhajul.activity.NotifikasiActivity;
 import com.atsar.minhajul.app.Config;
 import com.atsar.minhajul.model.ListRadio;
 import com.atsar.minhajul.model.ModelFcm;
@@ -57,8 +58,8 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.playTrigger)
     ImageButton trigger;
 
-//    @BindView(R.id.drawer_layout)
-//    DrawerLayout drawerLayout;
+//    @BindView(R.id.pullToRefresh)
+//    SwipeRefreshLayout swipeRefreshLayout;
 //
 //    @BindView(R.id.naView)
 //    NavigationView navigationView;
@@ -129,7 +130,7 @@ public class MainActivity extends AppCompatActivity {
         setupDrawer(nvDrawer);
         drawerToggle= setupDrawerToggle();
         mDrawer.addDrawerListener(drawerToggle);
-        nvDrawer.getMenu().getItem(0).setChecked(true);
+//        nvDrawer.getMenu().getItem(0).setChecked(true);
 //        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer);
 //        mToggle = new ActionBarDrawerToggle(this,mDrawerLayout,R.string.open,R.string.close);
 //        NavigationView nvDrawer = (NavigationView) findViewById(R.id.nv);
@@ -163,9 +164,21 @@ public class MainActivity extends AppCompatActivity {
         };
 
 
-        displayFirebaseRegId();
-    }
 
+        displayFirebaseRegId();
+
+//        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+//            int Refreshcounter = 1; //Counting how many times user have refreshed the layout
+//
+//            @Override
+//            public void onRefresh() {
+//                //Here you can update your data from internet or from local SQLite data
+//
+//                getRadio();
+//                swipeRefreshLayout.setRefreshing(false);
+//            }
+//        });
+    }
 
 
     private void displayFirebaseRegId() {
@@ -198,31 +211,35 @@ public class MainActivity extends AppCompatActivity {
 
     private void Terpilih(MenuItem menu) {
         switch(menu.getItemId()){
-            case R.id.db:
-                Toast.makeText(getApplicationContext(), "Dashboard: " , Toast.LENGTH_LONG).show();
-                break;
-            case R.id.info:
-                Toast.makeText(getApplicationContext(), "Info: " , Toast.LENGTH_LONG).show();
+            case R.id.jadwal:
+                startActivity(new Intent(this, JadwalActivity.class));
+//                overridePendingTransition(R.anim.slide_no_move, R.anim.fade);
+//                Intent injadwal = new Intent(this, JadwalActivity.class);
+//                startActivity(injadwal);
                 break;
 
         }
 //        try{
 //            frag=(Fragment) fragclass.newInstance();
 //        }catch(Exception e){}
-        menu.setChecked(true);
-        setTitle(menu.getTitle());
+//        menu.setChecked(true);
+//        setTitle(menu.getTitle());
         mDrawer.closeDrawers();
+
+
     }
+
+
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
         drawerToggle.syncState();
     }
-    @Override
-    public void onConfigurationChanged(Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
-        drawerToggle.onConfigurationChanged(newConfig);
-    }
+//    @Override
+//    public void onConfigurationChanged(Configuration newConfig) {
+//        super.onConfigurationChanged(newConfig);
+//        drawerToggle.onConfigurationChanged(newConfig);
+//    }
 
 
     private void getRadio() {

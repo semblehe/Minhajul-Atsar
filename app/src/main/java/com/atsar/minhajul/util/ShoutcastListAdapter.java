@@ -86,7 +86,7 @@ public class ShoutcastListAdapter extends BaseAdapter {
 
         if(sts.equalsIgnoreCase("LIVE")){
             holder.siaran.setBackgroundResource(R.drawable.badge_live);
-            Animation anim = new AlphaAnimation(0.5f, 1.0f);
+            Animation anim = new AlphaAnimation(0.3f, 1.0f);
             anim.setDuration(400); //You can manage the time of the blink with this parameter
             anim.setStartOffset(400);
             anim.setRepeatMode(Animation.REVERSE);

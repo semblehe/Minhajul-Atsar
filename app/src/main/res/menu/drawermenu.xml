@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="@+id/db" android:title="dashboard" android:icon="@drawable/ic_home_black_24dp"></item>
-    <item android:id="@+id/info" android:title="info" android:icon="@drawable/ic_radio_black_24dp"></item>
-    <item android:id="@+id/setting" android:title="Setting" android:icon="@drawable/ic_settings_black_24dp"></item>
+    <item android:id="@+id/jadwal" android:title="Jadwal Kajian" android:icon="@drawable/ic_date_range_black_24dp"></item>
+    <item android:id="@+id/rekaman" android:title="Audio Rekaman" android:icon="@drawable/ic_art_track_black_24dp"></item>
+    <item android:id="@+id/kitab" android:title="Kitab / Buletin" android:icon="@drawable/ic_book_black_24dp"></item>
 </menu>
